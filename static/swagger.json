@@ -1,0 +1,68 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Movie API",
+    "description": "Eine einfache API zum Verwalten von Filmen.",
+    "version": "1.0.0"
+  },
+  "host": "127.0.0.1:5000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/movies": {
+      "get": {
+        "summary": "Liste aller Filme",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "summary": "Neuen Film hinzufügen",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string" },
+                "director": { "type": "string" },
+                "year": { "type": "integer" }
+              },
+              "required": ["title", "director", "year"]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Erstellt"
+          }
+        }
+      }
+    },
+    "/movies/{movie_id}": {
+      "get": {
+        "summary": "Einzelnen Film anzeigen",
+        "parameters": [
+          {
+            "name": "movie_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Gefunden"
+          },
+          "404": {
+            "description": "Nicht gefunden"
+          }
+        }
+      }
+    }
+  }
+}
